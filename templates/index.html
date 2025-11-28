@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Spam Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="app-bg" aria-hidden="true"></div>
+    <div class="page">
+        <header class="hero">
+            <div class="hero__text">
+                <span class="hero__eyebrow">AI-powered safeguard</span>
+                <h1 class="hero__title">Guard your inbox from spam</h1>
+                <p class="hero__copy">Paste suspicious email text and uncover risk signals in seconds before it reaches
+                    your users.</p>
+                <div class="hero__features">
+                    <div class="hero__feature">
+                        <h3>Fast verdicts</h3>
+                        <p>Receive instant scoring with responsive feedback for rapid triage.</p>
+                    </div>
+                    <div class="hero__feature">
+                        <h3>Signal aware</h3>
+                        <p>Spot language patterns that frequently appear in phishing and junk campaigns.</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="layout">
+            <section class="card form-card">
+                <div class="card__header">
+                    <h2>Run a classification</h2>
+                    <p>Paste the full body of the email. The more context you share, the stronger the decision.</p>
+                </div>
+                <label for="emailText" class="field-label">Email content</label>
+                <textarea id="emailText" name="emailText" rows="12"
+                    placeholder="Paste the email text here, including subject lines, signatures, and any URLs..."></textarea>
+                <div class="sample-chips" aria-label="Sample inputs">
+                    <button type="button" class="chip"
+                        data-sample="Congratulations! You have been selected to win a brand new smartphone. Click here to claim your prize before midnight.">Promo
+                        blast</button>
+                    <button type="button" class="chip"
+                        data-sample="Hi team, attached is the updated project plan for review. Let me know if anything needs to be adjusted before tomorrow&apos;s meeting.">Project
+                        update</button>
+                    <button type="button" class="chip"
+                        data-sample="Dear user, your account password expires today. Please verify your identity and reset it immediately using the secure link provided.">Security
+                        alert</button>
+                </div>
+                <div class="card__actions">
+                    <button id="classifyBtn" class="cta-button" type="button">Classify Email</button>
+                    <p class="hint">Press Ctrl+Enter to run instantly.</p>
+                </div>
+                <div id="status" class="status" role="status" aria-live="polite" hidden></div>
+                <div id="result" class="result-card" hidden>
+                    <div class="result-card__header">
+                        <span id="resultLabel" class="result-card__badge"></span>
+                        <div class="result-card__meta">
+                            <span class="result-card__meta-label">Confidence</span>
+                            <span id="resultConfidence" class="result-card__meta-value"></span>
+                        </div>
+                    </div>
+                    <p id="resultMessage" class="result-card__message"></p>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <small>Production model integration will be wired in once the trained artifact path is provided.</small>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+
+</html>
